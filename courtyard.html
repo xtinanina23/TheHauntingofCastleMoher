@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Moonlit Courtyard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Moonlit Courtyard</h1>
+    <p>
+      You step into the Moonlit Courtyard. Ivy climbs ancient walls and pale moonlight reflects off the dewy grass. Somewhere in the silence, the ghost of the Princess' beloved cat, Kirra roams — her purrs like whispers on the wind. You must find her to continue your journey.
+    </p>
+
+    <!-- This is the obstacle message area -->
+    <p id="obstacleText">Search the garden quietly... Kirra is easily startled.</p>
+
+    <button id="searchBtn" data-next-page="library.html">Find Kirra</button>
+  </div>
+
+  <script>
+    const searchBtn = document.getElementById('searchBtn');
+    const obstacleText = document.getElementById('obstacleText');
+    let foundItem = false;
+
+    searchBtn.addEventListener('click', () => {
+      if (!foundItem) {
+        const found = Math.random() < 0.5; // 50% chance
+
+        if (found) {
+          foundItem = true;
+          searchBtn.textContent = "Go to the Library of Echoes";
+          obstacleText.textContent = "A soft meow echoes from behind the fountain. Kirra appears, her ghostly form shimmering in the moonlight. You've found her!";
+        } else {
+          const obstacles = [
+            "A chill wind sweeps the courtyard, and Kirra vanishes into the mist.",
+            "You hear a faint purr, but it's only the rustling of ivy.",
+            "A distant owl hoots, breaking your concentration. Try again.",
+            "The courtyard statue's shadow spooks you, and Kirra remains hidden.",
+            "You trip on a loose cobblestone and lose sight of Kirra's trail."
+          ];
+          const randomObstacle = obstacles[Math.floor(Math.random() * obstacles.length)];
+          obstacleText.textContent = randomObstacle;
+          searchBtn.textContent = "Search Again";
+        }
+      } else {
+        // Item already found, go to the next page
+        window.location.href = searchBtn.dataset.nextPage;
+      }
+    });
+  </script>
+</body>
+</html>

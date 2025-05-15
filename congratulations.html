@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Congratulations!</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Congratulations, Prince!</h1>
+    <p id="mainText">
+      You have completed your quest and awakened Princess Christina from her enchanted slumber. Through your courage, perseverance, and longing, the princess is now free.
+
+      <br><br>
+
+      Your journey, however, is far from over. As a token of her gratitude, Princess Christina will bestow upon you three sacred gifts. But she will not make it easy.
+    </p>
+
+<p id="mainText">
+  <!-- main text here -->
+</p>
+
+<hr class="divider" />
+
+<p id="clueText" style="margin-top: 30px; white-space: pre-line;"></p>
+
+
+    <p id="clueText" style="margin-top: 30px; white-space: pre-line;"></p>
+
+    <div style="margin-top: 40px;">
+      <button id="clueBtn">--></button>
+    </div>
+  </div>
+
+  <script>
+    const clueBtn = document.getElementById('clueBtn');
+    const clueText = document.getElementById('clueText');
+    const mainText = document.getElementById('mainText');
+
+    // Array of clues to cycle through
+    const clues = [
+      `The first clue to your gift lies hidden in the place where ancient wisdom and intuition converge—a space where the secrets of the universe are whispered through the cards.
+
+The first clue is yours for the taking...`,
+      
+      `The second gift waits where memory is framed, not in gold or silver, but in story. A whisper of ‘As You Wish’ lingers there, guarded by lovers lost in fiction. What is hidden is not lost — it longs to be written.`,
+
+      `A smaller self, a quiet twin,
+rests beneath the one who holds your grin.
+Not far from where dreams softly blend,
+an extension of you guards the end.
+Among the pillows where comfort lies,
+your secret waits in gentle disguise.`
+    ];
+
+    // Congratulatory message after last clue
+    const finalMessage = `You have found all three sacred gifts, Prince! May they bring you joy, inspiration, and comfort as you continue your adventures together with Princess Christina.`;
+
+    let clueIndex = -1; // Start before first clue
+
+    clueBtn.addEventListener('click', () => {
+      clueIndex++;
+
+      if (clueIndex < clues.length) {
+        // Show the next clue, replace any previous clue text
+        clueText.textContent = clues[clueIndex];
+      } else if (clueIndex === clues.length) {
+        // After last clue, show final message and change button to Home
+        mainText.textContent = finalMessage;
+        clueText.textContent = '';
+        clueBtn.textContent = 'Home';
+      } else {
+        // Button now acts as Home button
+        window.location.href = 'index.html';
+      }
+    });
+  </script>
+</body>
+</html>

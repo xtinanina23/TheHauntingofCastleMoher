@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Library of Echoes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Library of Echoes</h1>
+    <p>
+      Shelves spiral to the ceiling, lined with dust-laced tomes. Whispers flicker through candlelight. Somewhere within, the Princess’s diary is hidden — another piece of her fractured soul.
+    </p>
+
+    <!-- New dynamic obstacle/instructional text -->
+    <p id="obstacleText">Tread lightly — the books whisper secrets when disturbed.</p>
+
+    <button id="searchBtn">Search for Diary</button>
+  </div>
+
+  <script>
+    const btn = document.getElementById("searchBtn");
+    const obstacleText = document.getElementById("obstacleText");
+    let found = false;
+
+    btn.addEventListener("click", () => {
+      if (!found) {
+        const success = Math.random() < 0.5;
+
+        if (success) {
+          found = true;
+          btn.textContent = "Continue to Tower of Whispers";
+          obstacleText.textContent = "You find a worn leather-bound diary behind a false panel in the wall. The air around you stills as a memory unlocks.";
+        } else {
+          const obstacles = [
+            "A flurry of pages erupts from the shelves, swirling and obscuring your vision.",
+            "A spectral librarian hisses from the shadows, forcing you to retreat.",
+            "You knock over a stack of scrolls — the noise draws something... unseen.",
+            "The diary slips through your fingers and vanishes into the shelves.",
+            "An invisible force slams a book shut just as you reach for it."
+          ];
+          const randomObstacle = obstacles[Math.floor(Math.random() * obstacles.length)];
+          obstacleText.textContent = randomObstacle;
+          btn.textContent = "Search Again";
+        }
+      } else {
+        window.location.href = "tower.html";
+      }
+    });
+  </script>
+</body>
+</html>

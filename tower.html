@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tower of Whispers</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Tower of Whispers</h1>
+    <p>
+      Atop the ancient spire, wind and shadow whisper riddles in forgotten tongues. Somewhere hidden among the vines lies the Moonlit Rose — the final remnant of Christina’s soul.
+    </p>
+
+    <!-- New dynamic obstacle/instructional text -->
+    <p id="obstacleText">The wind hums with voices not your own. Search carefully among the vines.</p>
+
+    <button id="searchBtn">Search for Moonlit Rose</button>
+  </div>
+
+  <script>
+    const btn = document.getElementById("searchBtn");
+    const obstacleText = document.getElementById("obstacleText");
+    let found = false;
+
+    btn.addEventListener("click", () => {
+      if (!found) {
+        const success = Math.random() < 0.5;
+
+        if (success) {
+          found = true;
+          btn.textContent = "Continue to Sanctum of Light";
+          obstacleText.textContent = "Behind a wall of ivy, petals shimmer with silver moonlight — you've found the Moonlit Rose, pulsing faintly with lost magic.";
+        } else {
+          const obstacles = [
+            "The wind howls louder, scattering your thoughts and hiding the rose.",
+            "A thorned vine lashes out, forcing you to step back.",
+            "The shadows whisper riddles that twist your memory.",
+            "Your lantern flickers and dies, leaving you in near darkness.",
+            "You reach for something glowing, but it crumbles to ash in your hand."
+          ];
+          const randomObstacle = obstacles[Math.floor(Math.random() * obstacles.length)];
+          obstacleText.textContent = randomObstacle;
+          btn.textContent = "Search Again";
+        }
+      } else {
+        window.location.href = "sanctum.html";
+      }
+    });
+  </script>
+</body>
+</html>
